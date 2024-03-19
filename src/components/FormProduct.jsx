@@ -32,8 +32,9 @@ const FormProduct = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
-            <h2>Product Info</h2>
+        <form  className='content' onSubmit={handleSubmit(submit)}>
+            <h2 className='titulo'>Product <span className='info'>Info</span></h2>
+            <div className='form'>
             <div>
                 <label htmlFor="bar-code">Bar code</label>
                 <input {...register('bar_code',{required:"this is required" })} type="text" id="bar-code" />
@@ -50,7 +51,8 @@ const FormProduct = () => {
                 <label htmlFor="expiration-date">Expiration date</label>
                 <input {...register('exp_date', {required:"this is required"})} type="date" id="expiration-date" />
             </div>
-            <button>Submit</button>
+            <button className='block'>Submit</button>
+            </div>
         </form>
 
     )
