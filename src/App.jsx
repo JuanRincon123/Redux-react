@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import './App.css'
 import FormProduct from './components/FormProduct'
+import ProductCard from './components/ProductCard'
 
 function App() {
 
@@ -11,6 +12,16 @@ console.log(cart)
   return (
     <div>
       <FormProduct/>
+      <div>
+        {
+          cart.map(product => (
+            <ProductCard
+            key={product.bar_code}
+            product={product}
+            />
+          ))
+        }
+      </div>
     </div>
   )
 }

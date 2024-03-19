@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { addProductG } from '../../store/slides/cart.slides'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProductG, updateProductG } from '../../store/slices/cart.slice'
+import { setUpdateInfoG } from '../../store/slices/updateinfo.slice'
 
 const FormProduct = () => {
 
     const { register, reset, handleSubmit } = useForm()
 
+    const { updateinfo } = useSelector(states => states)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        reset(updateinfo)
+    }, [updateinfo])
+
     const submit = data => {
-        dispatch(addProductG(data))
+        if (updateinfo) {
+            dispatch(updateProductG(data))
+            dispatch(setUpdateInfoG(null))
+        } else {
+            dispatch(addProductG(data))
+        }
 
         reset({
             bar_code: '',
@@ -25,19 +36,19 @@ const FormProduct = () => {
             <h2>Product Info</h2>
             <div>
                 <label htmlFor="bar-code">Bar code</label>
-                <input {...register('bar_code')} type="text" id="bar-code" />
+                <input {...register('bar_code',{required:"this is required" })} type="text" id="bar-code" />
             </div>
             <div>
                 <label htmlFor="name">Name</label>
-                <input {...register('name')} type="text" id="name" />
+                <input {...register('name', {required:"this is required"})} type="text" id="name" />
             </div>
             <div>
                 <label htmlFor="price">Price</label>
-                <input {...register('price')} type="number" id="price" />
+                <input {...register('price', {required:"this is required"})} type="number" id="price" />
             </div>
             <div>
                 <label htmlFor="expiration-date">Expiration date</label>
-                <input {...register('exp_date')} type="date" id="expiration-date" />
+                <input {...register('exp_date', {required:"this is required"})} type="date" id="expiration-date" />
             </div>
             <button>Submit</button>
         </form>
