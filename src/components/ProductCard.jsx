@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { deleteProductG } from "../../store/slices/cart.slice"
 import { setUpdateInfoG } from "../../store/slices/updateinfo.slice"
+import '../../src/App.css'
 
 const ProductCard = ({ product }) => {
 
@@ -15,15 +16,18 @@ const ProductCard = ({ product }) => {
     }
 
     return (
-        <article>
+        <article  className="card">
             <h3>{product.name}</h3>
+
             <ul>
                 <li><span>Bar code: </span><span>{product.bar_code}</span></li>
-                <li><span>Expiration Date: </span><span>{product.exp_date}</span></li>
                 <li><span>Price: $</span><span>{product.price} USD</span></li>
+                <li><span>Expiration Date: </span><span>{product.exp_date}</span></li>
             </ul>
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={handleUpdate}>Update</button>
+            <div className="btn-group">
+            <button className="button1" onClick={handleDelete}>Delete</button>
+            <button className='button2'onClick={handleUpdate}>Update</button>
+            </div>
         </article>
     )
 }

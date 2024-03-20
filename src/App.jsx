@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import './App.css'
+import './App.css';
 import FormProduct from './components/FormProduct'
 import ProductCard from './components/ProductCard'
 
@@ -12,7 +12,7 @@ console.log(cart)
   return (
     <div>
       <FormProduct/>
-      <div>
+      <div className='content-card'>
         {
           cart.map(product => (
             <ProductCard
